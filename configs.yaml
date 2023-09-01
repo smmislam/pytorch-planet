@@ -1,0 +1,56 @@
+defaults:
+
+  # Generic
+  rng_seed: 7321                      # seed for random number generators
+  fp_precision: 32                    # floating point precision (either 16 or 32)
+  device: 'cuda'                      # computation device ('cpu', 'cuda', 'cuda:0' etc.)
+  n_seed_episodes: 5                  # number of seed episodes
+  action_repeat: 1                    # action repeat (excluding the 1st action)
+  eval_gif_freq: 10                   # evaluation gif creation frequency (after how many episodes)
+  vp_eval_freq: 10                    # video-prediction evaluation frequency (after how many episodes)
+
+  # Training
+  n_steps: 1000                       # number of learning (model-fitting and data-collection) steps
+  collect_interval: 100               # number of WM updates before collecting a new episode
+  batch_size: 50                      # training batch size
+  chunk_length: 50                    # length of each sampled episode from experience buffer
+  planning_horizon: 12                # planning horizon
+  plan_optimization_iter: 10          # number of iterations for searching optimized plan
+  n_plans: 1000                       # number of sampled plans per optimization iteration
+  top_k: 100                          # number of chosen plans to fit the updated belief
+  lr: 1e-3                            # learning rate
+  adam_epsilon: 1e-4                  # epsilon value for adam optimizer
+  max_grad_norm: 1e3                  # upper-limit on grad norm value
+  free_nats: 3.0                      # free nats for kl-divergence from prior to posterior
+
+  # Environment
+  observation_resolution: 64          # resized resolution of the observation
+  pixel_bit: 5                        # bit-length of the observation pixel
+  action_epsilon: 3e-1                # std of the zero-mean gaussian exploration noise
+
+  # Model params
+  feat_dim: 1024                      # size of flattened CNN features from the encoder
+  h_dim: 200                          # dimension of deterministic state
+  z_dim: 30                           # dimension of stochastic state
+  min_std: 1e-2                       # minimum standard deviation of the stochastic states
+
+
+# Should update reward boundaries
+gym:
+  api_name: gym
+  env_name: HalfCheetah-v4            # Name of the environment
+  max_episode_step: 1000              # maximum allowed episode step before truncation
+  min_reward: 0.0
+  max_reward: 1.0
+  min_action: -1.0
+  max_action: 1.0
+
+dmc:
+  api_name: dmc
+  domain_name: walker
+  task_name: walk
+  min_reward: 0.0
+  max_reward: 1.0
+  min_action: -1.0
+  max_action: 1.0
+

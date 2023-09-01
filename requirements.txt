@@ -1,0 +1,11 @@
+python==3.10.12
+torch==2.0.1
+numpy==1.25.2
+dm-control==1.0.14
+mujoco==2.3.7
+gymnasium==0.29.1
+opencv-python==4.8.0.76
+tensorboard==2.14.0
+einops==0.6.1
+ruamel.yaml==0.17.32
+moviepy==1.0.3
