@@ -32,6 +32,7 @@ defaults:
   feat_dim: 1024                      # size of flattened CNN features from the encoder
   h_dim: 200                          # dimension of deterministic state
   z_dim: 30                           # dimension of stochastic state
+  n_ff_layers: 2                      # number of layer in the feed-forward networks
   min_std: 1e-2                       # minimum standard deviation of the stochastic states
 
 
@@ -53,4 +54,3 @@ dmc:
   max_reward: 1.0
   min_action: -1.0
   max_action: 1.0
-

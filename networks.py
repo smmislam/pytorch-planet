@@ -34,7 +34,7 @@ class RepresentationModel(nn.Module):
             input_dim=self.params['h_dim']+self.params['feat_dim'],
             output_dim=2*self.params['z_dim'],
             hidden_dim=self.params['h_dim'],
-            n_layers=2
+            n_layers=self.params['n_ff_layers']
         )
 
     def forward(self, h_state, encoded_obs):
@@ -65,7 +65,7 @@ class TransitionModel(nn.Module):
             input_dim=self.params['h_dim'],
             output_dim=2*self.params['z_dim'],
             hidden_dim=self.params['h_dim'],
-            n_layers=2
+            n_layers=self.params['n_ff_layers']
         )
 
     def forward(self, h_state):
@@ -107,7 +107,7 @@ class RewardModel(nn.Module):
             input_dim=params['h_dim']+params['z_dim'],
             output_dim=1,
             hidden_dim=params['h_dim'],
-            n_layers=2
+            n_layers=self.params['n_ff_layers']
         )
 
     def forward(self, h_state, z_state):
