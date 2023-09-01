@@ -12,6 +12,7 @@ def main():
     # Parse hyper-parameters
     parser = ArgumentParser()
     parser.add_argument('--configs', nargs='+', required=True)
+    # Comment the line above and comment out the line below if you want to debug in IDE like PyCharm
     # parser.add_argument('--configs', nargs='+', default=['defaults', 'dmc'])
     args, remaining = parser.parse_known_args()
     # Update from configs.yaml

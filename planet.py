@@ -35,7 +35,6 @@ class Planet(nn.Module):
 
     def forward(self, sampled_episodes):
         dist_predicted = {'prior': list(), 'posterior': list(), 'recon_obs': list(), 'reward': list()}
-        # h_state = torch.zeros((self.params['batch_size'], self.params['h_dim']), dtype=self.d_type, device=self.device)
         h_state = self.get_init_h_state(batch_size=self.params['batch_size'])
         for time_stamp in range(self.params['chunk_length']):
             input_obs = sampled_episodes['obs'][time_stamp]

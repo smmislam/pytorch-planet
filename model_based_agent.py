@@ -5,7 +5,6 @@ import copy
 from collections import namedtuple
 import cv2
 import gymnasium as gym
-import torch
 from torch import nn
 from torch.optim import Adam
 from torch.distributions import Normal, Independent
@@ -123,7 +122,6 @@ class ModelBasedLearner:
         print('\rCollecting a new episode with CEM-based planning ...', end='')
         self.world_model.eval()
         prev_obs, _ = self.env.reset()
-        # h_state = torch.zeros((1, self.params['h_dim']), dtype=self.d_type, device=self.device)
         h_state = self.world_model.get_init_h_state(batch_size=1)
         episode_transitions = list()
         while True:
@@ -184,7 +182,6 @@ class ModelBasedLearner:
         print('\rEvaluating learning progress ...', end='')
         self.world_model.eval()
         prev_obs, _ = self.env.reset()
-        # h_state = torch.zeros((1, self.params['h_dim']), dtype=self.d_type, device=self.device)
         h_state = self.world_model.get_init_h_state(batch_size=1)
         observed_frames, reconstructed_frames = list(), list()
         ep_reward = 0
@@ -210,7 +207,6 @@ class ModelBasedLearner:
         reconstructed_frames = torch.clip(torch.stack(reconstructed_frames).unsqueeze(dim=0) + 0.5, min=0.0, max=1.0)
         self.logger.add_scalar('Reward/test_episodes', ep_reward, step)
         if step % self.params['eval_gif_freq'] == 0:
-            # self.logger.add_video(f'TestEpisodes/after_training_step', reconstructed_frames.transpose(3, 4), global_step=step)
             self.logger.add_video(f'ObservedTestEpisode/{step}', observed_frames.transpose(3, 4))
             self.logger.add_video(f'ReconstructedTestEpisode/{step}', reconstructed_frames.transpose(3, 4))
             print('\rLearning progress evaluation complete! Saved the episode!')
@@ -224,7 +220,6 @@ class ModelBasedLearner:
             n_predicted_frames = 50
             self.world_model.eval()
             prev_obs, _ = self.env.reset()
-            # h_state = torch.zeros((1, self.params['h_dim']), dtype=self.d_type, device=self.device)
             h_state = self.world_model.get_init_h_state(batch_size=1)
 
             observed_frames, predicted_frames = list(), list()
@@ -261,7 +256,6 @@ class ModelBasedLearner:
             overlay_frames = torch.clip(0.5*(1 - observed_frames) + 0.5*predicted_frames, min=0.0, max=1.0)
 
             combined_frame = torch.cat([observed_frames, predicted_frames, overlay_frames], dim=3).unsqueeze(dim=0)
-            # self.logger.add_video(f'VideoPrediction/after_training_step', combined_frame.transpose(3, 4), global_step=step)
             self.logger.add_video(f'VideoPrediction/after_training_step_{step}', combined_frame.transpose(3, 4))
             print('\rVideo prediction evaluation is complete! Saved the episode!')
 
@@ -298,7 +292,6 @@ class ReplayBuffer:
         self.params = params
         self.d_type = get_dtype(self.params['fp_precision'])
         self.device = get_device(self.params['device'])
-        # self.chunk_len = params['chunk_length']
         self.memory = list()
 
     def __len__(self):
