@@ -41,6 +41,7 @@ I have trained this implementation (with single seed) on two of the following ta
 
 Rewards obtained from test episodes during the training phases are as follows
 (blue for <span style="color:skyblue">**cheetah-run**</span>, red for <span style="color:red">**walker-walk**</span>)
+
 <img src="figures/test_episode_rewards.png" width="250" alt="">
 
 And these are the training losses
