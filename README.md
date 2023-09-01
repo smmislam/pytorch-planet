@@ -1,9 +1,7 @@
 # PlaNet in PyTorch
 
-<center>
-    <img src="figures/demo_cheetah_run.gif" width="300" alt="demo_cheetah_run">
-    <img src="figures/demo_walker_walk.gif" width="300" alt="demo_walker_walk">
-</center>
+| <img src="figures/demo_cheetah_run.gif" width="300" alt="demo_cheetah_run"> | <img src="figures/demo_walker_walk.gif" width="300" alt="demo_walker_walk"> |
+|:---------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
 
 This is my PyTorch implementation of the paper **Learning Latent Dynamics for Planning from 
 Pixels** ([Hafner et al., 2018](https://arxiv.org/pdf/1811.04551)). 
