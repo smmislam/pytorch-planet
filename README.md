@@ -12,6 +12,8 @@ it is not included in this implementation.
 Note that, my interpretation of action repeat is that the agent has to perform the action at least twice for 
 it to be considered as a repetition. Hence, setting `action_repeat` to 1 will cause the action to be performed twice in total.
 
+Also, you might find the [Tips and Tricks](T_T.md) useful to better understand this paper from a practical point of view.
+
 # Usage
 1. Install the dependencies listed in [requirements.txt](requirements.txt)
 2. Run the following command to begin the training (default environment is dm-control's walker-walk) \
@@ -21,7 +23,7 @@ it to be considered as a repetition. Hence, setting `action_repeat` to 1 will ca
 
 It is recommended to use [dm-control suite](https://github.com/deepmind/dm_control) for testing, 
 as the reward from these environments are bounded from 0.0 to 1.0 across all domain and 
-tasks [ref](https://arxiv.org/pdf/1801.00690.pdf). 
+tasks ([ref](https://arxiv.org/pdf/1801.00690.pdf)). 
 I included some wrappers for the gymnasium as well, but you'd have to apply appropriate reward boundaries.
 
 # Performance Comparison
@@ -37,12 +39,12 @@ I have trained this implementation (with single seed) on two of the following ta
 | Cheetah Run |          662           |                 ~630                  |
 | Walker Walk |          994           |                 ~950                  |
 
-Rewards obtained from test episodes during the training phases are as follows 
+Rewards obtained from test episodes during the training phases are as follows
 (blue for <span style="color:skyblue">**cheetah-run**</span>, red for <span style="color:red">**walker-walk**</span>)
-<center><img src="figures/test_episode_rewards.png" width="250" alt=""></center>
+<img src="figures/test_episode_rewards.png" width="250" alt="">
 
 And these are the training losses
-<center><img src="figures/train_losses.png" width="3000" alt=""></center>
+<img src="figures/train_losses.png" width="3000" alt="">
 
 I could not run the original source code ([link](https://github.com/google-research/planet)) which was written in TF1. 
 While trying to build the environment for that, I was getting some error (regarding labmaze and bazel) 
